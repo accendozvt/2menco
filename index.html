@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 BETTROI BOS - Digital Business Operating System</title>
-    <meta name="description" content="Complete digital business operating system to earn 1 million in 9 months. Two humans + Digital robot team = Digital Empire!">
+    <title>BETTROI BOS | Digital Business Operating System</title>
+    <meta name="description" content="Complete digital business operating system to earn 1 million in 9 months.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --primary: #f25f29; /* Vibrant Orange */
+            --primary-hover: #d94e1d;
+            --secondary: #3b82f6; /* Bright Blue */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+            --glow-orange: 0 0 30px rgba(242, 95, 41, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,323 +34,508 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'DM Sans', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-main);
+            background-color: var(--bg-dark);
             min-height: 100vh;
+            overflow-x: hidden;
+            font-weight: 400;
         }
 
+        /* Background Orbit Effect */
+        .orbit-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .orbit-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-1 { width: 600px; height: 600px; }
+        .orbit-2 { width: 900px; height: 900px; opacity: 0.7; }
+        .orbit-3 { width: 1200px; height: 1200px; opacity: 0.5; }
+        .orbit-4 { width: 1600px; height: 1600px; opacity: 0.3; }
+
+        /* Utility */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
+        .highlight-text {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Header */
         .header {
             text-align: center;
-            padding: 60px 0;
-            color: white;
+            padding: 120px 0 80px;
+            position: relative;
         }
 
         .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 4rem; /* Reduced from 4.5rem for better DM Sans balance */
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+            font-weight: 700;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            padding: 6px 16px;
+            border-radius: 4px; /* More squared off like reference */
+            font-size: 0.85rem;
+            color: #fff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .header-badge svg {
+            color: var(--primary);
         }
 
         .header p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            font-size: 1.35rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
         }
 
+        /* Mission Section - Styled like the search bar area */
         .mission-statement {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 40px;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 80px;
+            text-align: center;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
 
         .mission-statement h2 {
-            color: #fff;
             font-size: 2rem;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: 700;
+            color: white;
         }
 
         .mission-statement p {
-            color: #fff;
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin: 0 auto;
         }
 
+        /* Stats Grid - Cleaner, boxy look */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 100px;
         }
 
         .stat-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
+            border-color: var(--primary);
         }
 
         .stat-card h3 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        
+        /* Orange bar under stats like the bar graph in image */
+        .stat-bar {
+            height: 4px;
+            width: 40px;
+            background: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
         }
 
         .stat-card p {
-            color: #666;
+            color: var(--text-muted);
             font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
 
+        /* Features Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 100px;
         }
 
         .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            border-color: #555;
+            background: #252525;
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary); /* Orange icons */
         }
 
         .feature-card h3 {
-            color: #667eea;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .feature-card p {
-            color: #666;
-            margin-bottom: 15px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
         .feature-list {
             list-style: none;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
         }
 
         .feature-list li {
-            padding: 5px 0;
-            color: #666;
+            padding: 8px 0;
+            color: #d4d4d4;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 400;
         }
 
-        .feature-list li:before {
-            content: "✅ ";
-            color: #28a745;
+        .feature-list li svg {
+            color: var(--secondary); /* Blue checks for contrast */
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
         }
 
+        /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 60px 0;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            margin-bottom: 40px;
         }
 
         .cta-section h2 {
-            color: white;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .cta-section p {
-            color: white;
+            color: var(--text-muted);
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #28a745;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 6px; /* Slightly more square */
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            border: none;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            margin: 10px;
+            cursor: pointer;
         }
 
-        .btn:hover {
-            background: #218838;
+        /* Primary Button - Orange */
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 95, 41, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
+        /* Secondary Button - Blue */
         .btn-secondary {
-            background: transparent;
-            border: 2px solid white;
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: #667eea;
+            background-color: #2563eb;
+            transform: translateY(-2px);
         }
 
+        /* Footer */
         .footer {
             text-align: center;
             padding: 40px 0;
-            color: white;
-            opacity: 0.8;
+            color: #666;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
         }
 
         .footer a {
-            color: white;
+            color: var(--text-muted);
             text-decoration: none;
+            transition: color 0.2s;
+            margin: 0 10px;
         }
 
         .footer a:hover {
-            text-decoration: underline;
+            color: var(--primary);
         }
 
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
-            
-            .header p {
-                font-size: 1.1rem;
+            .header-badge {
+                font-size: 0.75rem;
             }
-            
             .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Background Orbit Elements -->
+    <div class="orbit-container">
+        <div class="orbit-circle orbit-1"></div>
+        <div class="orbit-circle orbit-2"></div>
+        <div class="orbit-circle orbit-3"></div>
+        <div class="orbit-circle orbit-4"></div>
+    </div>
+
     <div class="container">
         <header class="header">
-            <h1>🚀 BETTROI BOS</h1>
-            <p>Digital Business Operating System</p>
+            <div class="header-badge">
+                <i data-lucide="rocket" width="14"></i>
+                <span>System V1.0</span>
+            </div>
+            <h1>BETTROI <span class="highlight-text">BOS</span></h1>
+            <p>The Complete Digital Business Operating System. <br>See what people are building everywhere, from <span style="color:white; font-weight:600;">Google</span> to <span class="highlight-text">ChatGPT</span>.</p>
+            
             <div class="mission-statement">
-                <h2>🎯 Your Mission: 1 Million in 9 Months</h2>
-                <p>Two humans + Digital robot team = Digital Empire! Complete system to automate your business and scale to 1 million AED in 9 months.</p>
+                <h2>
+                    Target: 1 Million in 9 Months
+                </h2>
+                <p>Two humans + Digital robot team = Digital Empire! <br>A complete architecture to automate your business scaling.</p>
             </div>
         </header>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>1M</h3>
-                <p>Target Revenue (AED)</p>
+                <div class="stat-bar"></div>
+                <p>Revenue Target (AED)</p>
             </div>
             <div class="stat-card">
-                <h3>9</h3>
+                <h3>09</h3>
+                <div class="stat-bar"></div>
                 <p>Months Timeline</p>
             </div>
             <div class="stat-card">
-                <h3>2</h3>
+                <h3>02</h3>
+                <div class="stat-bar"></div>
                 <p>Human Leaders</p>
             </div>
             <div class="stat-card">
                 <h3>24/7</h3>
-                <p>Robot Team</p>
+                <div class="stat-bar"></div>
+                <p>AI Robot Team</p>
             </div>
         </div>
 
         <div class="features-grid">
+            <!-- Feature 1 -->
             <div class="feature-card">
-                <h3>🤖 Digital Robot Team</h3>
-                <p>Complete automation with intelligent agents:</p>
+                <div class="icon-box">
+                    <i data-lucide="bot" width="28"></i>
+                </div>
+                <h3>Digital Robot Team</h3>
+                <p>Complete automation with intelligent agents working around the clock.</p>
                 <ul class="feature-list">
-                    <li>Digital CMO - Marketing & Lead Generation</li>
-                    <li>Digital CRO - Sales & Revenue Optimization</li>
-                    <li>Digital CFO - Financial Management</li>
-                    <li>Digital COO - Operations & Execution</li>
-                    <li>Digital CTO - Technology & Architecture</li>
-                    <li>Digital CXO - Customer Experience</li>
+                    <li><i data-lucide="check"></i> Digital CMO - Marketing & Leads</li>
+                    <li><i data-lucide="check"></i> Digital CRO - Revenue & Sales</li>
+                    <li><i data-lucide="check"></i> Digital CFO - Finance Mgmt</li>
+                    <li><i data-lucide="check"></i> Digital COO - Operations</li>
+                    <li><i data-lucide="check"></i> Digital CTO - Tech Stack</li>
+                    <li><i data-lucide="check"></i> Digital CXO - Customer Exp.</li>
                 </ul>
             </div>
 
+            <!-- Feature 2 -->
             <div class="feature-card">
-                <h3>📊 KPI-First System</h3>
-                <p>Every action drives measurable results:</p>
+                <div class="icon-box">
+                    <i data-lucide="bar-chart-2" width="28"></i>
+                </div>
+                <h3>KPI-First System</h3>
+                <p>Every action drives measurable results. Data-driven decision making.</p>
                 <ul class="feature-list">
-                    <li>Pipeline Growth & Lead Generation</li>
-                    <li>Win Rate & Conversion Optimization</li>
-                    <li>MRR/ARR Revenue Tracking</li>
-                    <li>Customer Satisfaction (NPS/CSAT)</li>
-                    <li>Cash Flow & Runway Management</li>
-                    <li>Real-time Performance Monitoring</li>
+                    <li><i data-lucide="check"></i> Pipeline Growth & Leads</li>
+                    <li><i data-lucide="check"></i> Win Rate Optimization</li>
+                    <li><i data-lucide="check"></i> MRR/ARR Revenue Tracking</li>
+                    <li><i data-lucide="check"></i> Net Promoter Score (NPS)</li>
+                    <li><i data-lucide="check"></i> Cash Flow & Runway</li>
+                    <li><i data-lucide="check"></i> Real-time Monitoring</li>
                 </ul>
             </div>
 
+            <!-- Feature 3 -->
             <div class="feature-card">
-                <h3>🔐 Enterprise Security</h3>
-                <p>Built with security and compliance:</p>
+                <div class="icon-box">
+                    <i data-lucide="shield-check" width="28"></i>
+                </div>
+                <h3>Enterprise Security</h3>
+                <p>Built with compliance at the core. Secure, reliable, and compliant.</p>
                 <ul class="feature-list">
-                    <li>UAE PDPL Compliance</li>
-                    <li>India DPDP Compliance</li>
-                    <li>EU GDPR Compliance</li>
-                    <li>Role-Based Access Control</li>
-                    <li>Data Residency Management</li>
-                    <li>24/7 Security Monitoring</li>
+                    <li><i data-lucide="check"></i> UAE PDPL Compliance</li>
+                    <li><i data-lucide="check"></i> India DPDP Compliance</li>
+                    <li><i data-lucide="check"></i> EU GDPR Compliance</li>
+                    <li><i data-lucide="check"></i> Role-Based Access (RBAC)</li>
+                    <li><i data-lucide="check"></i> Data Residency Mgmt</li>
+                    <li><i data-lucide="check"></i> 24/7 Security Monitoring</li>
                 </ul>
             </div>
 
+            <!-- Feature 4 -->
             <div class="feature-card">
-                <h3>🎛️ Command Center Dashboard</h3>
-                <p>One screen to control everything:</p>
+                <div class="icon-box">
+                    <i data-lucide="layout-dashboard" width="28"></i>
+                </div>
+                <h3>Command Center</h3>
+                <p>One screen to control everything. Complete visibility and control.</p>
                 <ul class="feature-list">
-                    <li>Real-time KPI Monitoring</li>
-                    <li>Agent Performance Tracking</li>
-                    <li>Incident & Alert Management</li>
-                    <li>Financial Dashboard</li>
-                    <li>Task Management System</li>
-                    <li>Automated Reporting</li>
+                    <li><i data-lucide="check"></i> Real-time KPI Monitoring</li>
+                    <li><i data-lucide="check"></i> Agent Performance Tracks</li>
+                    <li><i data-lucide="check"></i> Incident & Alert Mgmt</li>
+                    <li><i data-lucide="check"></i> Financial Dashboard</li>
+                    <li><i data-lucide="check"></i> Task Management System</li>
+                    <li><i data-lucide="check"></i> Automated Reporting</li>
                 </ul>
             </div>
 
+            <!-- Feature 5 -->
             <div class="feature-card">
-                <h3>📋 Complete Documentation</h3>
-                <p>Everything you need to succeed:</p>
+                <div class="icon-box">
+                    <i data-lucide="file-text" width="28"></i>
+                </div>
+                <h3>Complete Docs</h3>
+                <p>Everything you need to succeed, fully documented and ready to use.</p>
                 <ul class="feature-list">
-                    <li>9-Month Million Dollar Plan</li>
-                    <li>Standard Operating Procedures</li>
-                    <li>Agent Configuration Templates</li>
-                    <li>Task Contract System</li>
-                    <li>Quick Start Guide</li>
-                    <li>Acronyms & Glossary</li>
+                    <li><i data-lucide="check"></i> 9-Month Million Dollar Plan</li>
+                    <li><i data-lucide="check"></i> Standard Operating Procedures</li>
+                    <li><i data-lucide="check"></i> Agent Config Templates</li>
+                    <li><i data-lucide="check"></i> Task Contract System</li>
+                    <li><i data-lucide="check"></i> Quick Start Guide</li>
+                    <li><i data-lucide="check"></i> Acronyms & Glossary</li>
                 </ul>
             </div>
 
+            <!-- Feature 6 -->
             <div class="feature-card">
-                <h3>🚀 Scalable Architecture</h3>
-                <p>Grows with your business:</p>
+                <div class="icon-box">
+                    <i data-lucide="layers" width="28"></i>
+                </div>
+                <h3>Scalable Architecture</h3>
+                <p>Grows with your business. Built on cloud-native technologies.</p>
                 <ul class="feature-list">
-                    <li>Modular Agent System</li>
-                    <li>Cloud-Native Infrastructure</li>
-                    <li>Auto-Scaling Capabilities</li>
-                    <li>Multi-Region Deployment</li>
-                    <li>Continuous Integration/Deployment</li>
-                    <li>Performance Optimization</li>
+                    <li><i data-lucide="check"></i> Modular Agent System</li>
+                    <li><i data-lucide="check"></i> Cloud-Native Infrastructure</li>
+                    <li><i data-lucide="check"></i> Auto-Scaling Capabilities</li>
+                    <li><i data-lucide="check"></i> Multi-Region Deployment</li>
+                    <li><i data-lucide="check"></i> CI/CD Pipelines</li>
+                    <li><i data-lucide="check"></i> Performance Optimization</li>
                 </ul>
             </div>
         </div>
@@ -337,52 +543,57 @@
         <div class="cta-section">
             <h2>Ready to Build Your Digital Empire?</h2>
             <p>Start your journey to 1 million in 9 months with the complete BETTROI BOS system.</p>
-            <a href="https://github.com/chatgptnotes/2menco.git" class="btn" target="_blank">📚 View Complete System</a>
-            <a href="https://github.com/chatgptnotes/2menco/blob/main/docs/quick-start-guide.md" class="btn btn-secondary" target="_blank">🚀 Quick Start Guide</a>
+            <div class="btn-group">
+                <a href="https://github.com/chatgptnotes/2menco.git" class="btn btn-primary" target="_blank">
+                    View System
+                </a>
+                <a href="https://github.com/chatgptnotes/2menco/blob/main/docs/quick-start-guide.md" class="btn btn-secondary" target="_blank">
+                    Quick Start
+                </a>
+            </div>
         </div>
 
         <footer class="footer">
-            <p>© 2025 BETTROI BOS - Digital Business Operating System</p>
+            <p>&copy; 2025 BETTROI BOS - Digital Business Operating System</p>
             <p>Owner: BT (Biji Tharakan Thomas) | Version: 1.0 | Timezone: Asia/Dubai</p>
-            <p><a href="https://github.com/chatgptnotes/2menco.git" target="_blank">GitHub Repository</a> | <a href="https://github.com/chatgptnotes/2menco/blob/main/docs/million-dollar-plan.md" target="_blank">Million Dollar Plan</a></p>
+            <p>
+                <a href="https://github.com/chatgptnotes/2menco.git" target="_blank">GitHub Repository</a> | 
+                <a href="https://github.com/chatgptnotes/2menco/blob/main/docs/million-dollar-plan.md" target="_blank">Million Dollar Plan</a>
+            </p>
         </footer>
     </div>
 
     <script>
-        // Add some interactive features
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate stats on scroll
-            const stats = document.querySelectorAll('.stat-card h3');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.animation = 'countUp 2s ease-out';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
+            }, { threshold: 0.1 });
+
+            // Animate Stats
+            document.querySelectorAll('.stat-card').forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(el);
             });
 
-            stats.forEach(stat => observer.observe(stat));
-
-            // Add smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
+            // Animate Features
+            document.querySelectorAll('.feature-card').forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(el);
             });
         });
-
-        // Add CSS animation for counting
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes countUp {
-                from { opacity: 0; transform: translateY(20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
